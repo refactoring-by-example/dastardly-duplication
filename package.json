@@ -1,0 +1,33 @@
+{
+  "name": "dastardly-duplication",
+  "version": "1.0.0",
+  "description": "Code duplication",
+  "scripts": {
+    "test": "mocha",
+    "lint": "eslint .",
+    "coverage": "istanbul cover _mocha -- -R dot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/refactoring-by-example/dastardly-duplication"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/refactoring-by-example/dastardly-duplication/issues"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "homepage": "https://github.com/refactoring-by-example/dastardly-duplication",
+  "devDependencies": {
+    "istanbul": "^0.4.1",
+    "mocha": "^2.1.0",
+    "nock": "^9.1.9",
+    "sinon": "^4.4.0"
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "filehound": "^1.16.0",
+    "request": "^2.83.0"
+  }
+}
