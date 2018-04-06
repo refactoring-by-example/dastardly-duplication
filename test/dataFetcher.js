@@ -190,10 +190,28 @@ describe('Store Metadata Fetcher', () => {
             }));
         });
 
+        it('retries failed requests', async () => {
+            nock.cleanAll()
+            nock(metadataHost)
+                .get('/books')
+                .times(2)
+                .reply(500);
+
+            defaultNocks();
+
+            await dataFetcher.fetch();
+            sinon.assert.calledWith(dao.save, sinon.match({
+                title: 'raw title',
+                subtitle: 'someone',
+                kind: 'fiction'
+            }));
+        });
+
         it('yields an error when an API call fails', async () => {
             nock.cleanAll()
             nock(metadataHost)
                 .get('/books')
+                .times(3)
                 .reply(500);
 
             defaultNocks();
@@ -236,6 +254,7 @@ describe('Store Metadata Fetcher', () => {
             nock.cleanAll()
             nock(metadataHost)
                 .get('/dvds')
+                .times(3)
                 .reply(500);
 
             defaultNocks();
@@ -264,6 +283,7 @@ describe('Store Metadata Fetcher', () => {
             nock.cleanAll()
             nock(metadataHost)
                 .get('/bluerays')
+                .times(3)
                 .reply(500);
 
             defaultNocks();
@@ -291,6 +311,7 @@ describe('Store Metadata Fetcher', () => {
             nock.cleanAll();
             nock(metadataHost)
                 .get('/vinyls')
+                .times(3)
                 .reply(500);
 
             defaultNocks();
